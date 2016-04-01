@@ -2,10 +2,10 @@
 
 namespace AppBundle\Command;
 
+use AppBundle\Scraper;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class VisitCommand extends ContainerAwareCommand
@@ -26,8 +26,8 @@ class VisitCommand extends ContainerAwareCommand
     {
         $url = $input->getArgument('url');
 
-        $text = 'This is the URL: ' . $url;
+        $scraper = new Scraper($url);
 
-        $output->writeln($text);
+        $output->writeln('Newest classified ad is: ' . $scraper->findNewestClassified());
     }
 }

@@ -7,3 +7,4 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
+/links.txt
