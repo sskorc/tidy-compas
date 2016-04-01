@@ -1,1 +1,1 @@
-# tidy-compas
+# tidy-compass
