@@ -15,7 +15,7 @@ class Scraper
         $this->crawler = $client->request('GET', $url);
     }
 
-    public function findNewestClassified()
+    public function findTopClassified()
     {
         $node = $this->crawler->filter('#wcontent > ul.list-ogl li')->first();
 

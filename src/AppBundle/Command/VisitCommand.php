@@ -28,6 +28,6 @@ class VisitCommand extends ContainerAwareCommand
 
         $scraper = new Scraper($url);
 
-        $output->writeln('Newest classified ad is: ' . $scraper->findNewestClassified());
+        $output->writeln('Top classified ad is: ' . $scraper->findTopClassified());
     }
 }
