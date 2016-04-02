@@ -28,6 +28,20 @@ class VisitCommand extends ContainerAwareCommand
 
         $scraper = new Scraper($url);
 
+        $message = \Swift_Message::newInstance()
+            ->setSubject('New classified ad')
+            ->setFrom('from@example.com')
+            ->setTo('to@example.com')
+            ->setBody(
+                $this->getContainer()->get('templating')->render(
+                    'Emails/newClassified.html.twig',
+                    array('url' => $url)
+                ),
+                'text/html'
+            )
+        ;
+        $this->getContainer()->get('mailer')->send($message);
+
         $output->writeln('Top classified ad is: ' . $scraper->findTopClassified());
     }
 }
