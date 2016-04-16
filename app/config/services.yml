@@ -1,9 +1,12 @@
-# Learn more about services, parameters and containers at
-# http://symfony.com/doc/current/book/service_container.html
-parameters:
-#    parameter_name: value
-
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+  goutte.client:
+    class: Goutte\Client
+  service.trojmiasto.scrap_classifieds:
+    class: Infrastructure\Scraping\Trojmiasto\TrojmiastoScrapClassifieds
+    arguments: ['@goutte.client']
+  service.email.notify_about_new_classified:
+    class: Infrastructure\Messaging\Email\EmailNotifyAboutNewClassified
+    arguments: ['@mailer', '@templating']
+  use_case.check_for_new_classified:
+    class: Application\UseCase\CheckForNewClassified
+    arguments: ['@service.trojmiasto.scrap_classifieds', '@service.email.notify_about_new_classified']
