@@ -42,7 +42,11 @@ class VisitCommand extends ContainerAwareCommand implements CheckForNewClassifie
             $this
         );
 
-        $output->writeln('Top classified ad is: ' . $this->classified->getUrl());
+        if (!empty($this->classified)) {
+            $output->writeln('New classified ad is: ' . $this->classified->getUrl());
+        } else {
+            $output->writeln('No new classified found :(');
+        }
     }
 
     private function getCheckForNewClassifiedUseCase()

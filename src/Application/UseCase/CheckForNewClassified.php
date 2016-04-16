@@ -4,6 +4,7 @@ namespace Application\UseCase;
 
 use Application\UseCase\CheckForNewClassified\Command;
 use Application\UseCase\CheckForNewClassified\Responder;
+use Domain\Classified\ClassifiedNotFoundException;
 use Domain\Classified\ClassifiedRepository;
 use Domain\Classified\NotifyAboutNewClassified;
 use Domain\Classified\ScrapClassifieds;
@@ -42,10 +43,18 @@ class CheckForNewClassified
     {
         $classified = $this->classifiedService->findTopClassified($command->getUrl());
 
-        $this->classifiedRepository->add($classified);
+        try {
+            $previousClassified = $this->classifiedRepository->findLastClassified();
+        } catch (ClassifiedNotFoundException $e) {
+            $previousClassified = null;
+        }
 
-        $this->notifyAboutNewClassified->execute($classified, $command->getEmail());
-
-        $responder->newClassifiedFound($classified);
+        if (empty($previousClassified) || $classified->getUrl() != $previousClassified->getUrl()) {
+            $this->classifiedRepository->add($classified);
+            $this->notifyAboutNewClassified->execute($classified, $command->getEmail());
+            $responder->newClassifiedFound($classified);
+        } else {
+            $responder->noNewClassifiedFound();
+        }
     }
 }
