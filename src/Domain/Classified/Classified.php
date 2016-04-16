@@ -7,14 +7,14 @@ class Classified
     /** @var string */
     private $url;
 
-    /** @var float */
+    /** @var Price */
     private $price;
 
     /**
      * @param string $url
-     * @param float $price
+     * @param Price $price
      */
-    public function __construct($url, $price)
+    public function __construct($url, Price $price)
     {
         $this->url = $url;
         $this->price = $price;
@@ -29,7 +29,7 @@ class Classified
     }
 
     /**
-     * @return float
+     * @return Price
      */
     public function getPrice()
     {

@@ -27,7 +27,10 @@ class EmailNotifyAboutNewClassified implements NotifyAboutNewClassified
             ->setBody(
                 $this->templating->render(
                     'Emails/newClassified.html.twig',
-                    array('url' => $classified->getUrl())
+                    [
+                        'url' => $classified->getUrl(),
+                        'price' => $classified->getPrice(),
+                    ]
                 ),
                 'text/html'
             )

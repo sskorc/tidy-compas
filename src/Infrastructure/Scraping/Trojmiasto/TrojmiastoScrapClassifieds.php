@@ -3,6 +3,7 @@
 namespace Infrastructure\Scraping\Trojmiasto;
 
 use Domain\Classified\Classified;
+use Domain\Classified\Price;
 use Domain\Classified\ScrapClassifieds;
 use Goutte\Client;
 
@@ -27,7 +28,7 @@ class TrojmiastoScrapClassifieds implements ScrapClassifieds
         $node = $crawler->filter('#wcontent > ul.list-ogl li')->first();
 
         $url = $node->filter('h2 a')->attr('href');
-        $price = 1000;
+        $price = new Price($node->filter('li.price')->text());
 
         $classified = new Classified($url, $price);
 
