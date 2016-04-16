@@ -44,3 +44,13 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+oneup_flysystem:
+    adapters:
+        my_adapter:
+            local:
+                directory: /tmp/sf/files
+
+    filesystems:
+        my:
+            adapter: my_adapter

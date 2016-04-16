@@ -1,6 +1,9 @@
 services:
   goutte.client:
     class: Goutte\Client
+  repository.classified:
+    class: Infrastructure\Persistance\File\FileClassifiedRepository
+    arguments: ['@oneup_flysystem.my_filesystem']
   service.trojmiasto.scrap_classifieds:
     class: Infrastructure\Scraping\Trojmiasto\TrojmiastoScrapClassifieds
     arguments: ['@goutte.client']
@@ -9,4 +12,7 @@ services:
     arguments: ['@mailer', '@templating']
   use_case.check_for_new_classified:
     class: Application\UseCase\CheckForNewClassified
-    arguments: ['@service.trojmiasto.scrap_classifieds', '@service.email.notify_about_new_classified']
+    arguments:
+      - '@service.trojmiasto.scrap_classifieds'
+      - '@service.email.notify_about_new_classified'
+      - '@repository.classified'
