@@ -1,9 +1,13 @@
-FROM sskorc/symfony-php7
+FROM sskorc/php5-symfony-cli
 
 ADD docker/php.ini.remote /usr/local/etc/php/php.ini
 
 ADD . /var/www/tidy-compass
 
 RUN /var/www/tidy-compass/startup.sh
+
+RUN crontab /var/www/tidy-compass cron
+
+CMD cron
 
 WORKDIR /var/www/tidy-compass

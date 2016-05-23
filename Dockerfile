@@ -1,4 +1,4 @@
-FROM sskorc/symfony-php7
+FROM sskorc/php5-symfony-cli
 
 RUN pecl install xdebug \
     && echo zend_extension=xdebug.so > /usr/local/etc/php/conf.d/xdebug.ini

@@ -1,0 +1,3 @@
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+*/5 * * * * cd /var/www/tidy-compass && php bin/console visit <URL> <EMAIL>
