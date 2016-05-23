@@ -6,7 +6,7 @@ ADD . /var/www/tidy-compass
 
 RUN /var/www/tidy-compass/startup.sh
 
-RUN crontab /var/www/tidy-compass cron
+RUN crontab /var/www/tidy-compass/cron
 
 CMD cron
 
