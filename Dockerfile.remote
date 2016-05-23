@@ -12,4 +12,8 @@ RUN curl -sS https://getcomposer.org/installer | php \
 
 ADD docker/php.ini.remote /usr/local/etc/php/php.ini
 
+ADD . /var/www/tidy-compass
+
+RUN /var/www/tidy-compass/startup.sh
+
 WORKDIR /var/www/tidy-compass
