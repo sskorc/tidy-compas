@@ -12,9 +12,9 @@ before_script:
 script:
     - docker build -f Dockerfile.remote -t sskorc/tidy-compass-dist .
 
-#deploy:
-#  provider: script
-#  script: ./deploy.sh
-#  skip_cleanup: true
-#  on:
-#    branch: master
+deploy:
+  provider: script
+  script: ./deploy.sh
+  skip_cleanup: true
+  on:
+    branch: master
