@@ -8,6 +8,7 @@ before_install:
 
 before_script:
     - rm web/app_dev.php web/config.php
+    - sed -i "s/\(mailer_password:\).*/\1 $MAILER_PASSWORD/" app/config/parameters.yml.dist
 
 script:
     - docker build -f Dockerfile.remote -t sskorc/tidy-compass-dist .
