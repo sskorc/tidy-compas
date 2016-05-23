@@ -8,6 +8,6 @@ RUN /var/www/tidy-compass/startup.sh
 
 RUN crontab /var/www/tidy-compass/cron
 
-CMD cron
+CMD cron -f
 
 WORKDIR /var/www/tidy-compass
