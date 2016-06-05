@@ -29,8 +29,9 @@ class TrojmiastoScrapClassifieds implements ScrapClassifieds
 
         $url = $node->filter('h2 a')->attr('href');
         $price = new Price($node->filter('li.price')->text());
+        $location = $node->filter('li.place')->text();
 
-        $classified = new Classified($url, $price);
+        $classified = new Classified($url, $price, $location);
 
         return $classified;
     }

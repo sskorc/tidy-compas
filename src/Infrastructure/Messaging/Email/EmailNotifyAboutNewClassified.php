@@ -30,6 +30,7 @@ class EmailNotifyAboutNewClassified implements NotifyAboutNewClassified
                     [
                         'url' => $classified->getUrl(),
                         'price' => $classified->getPrice(),
+                        'location' => $classified->getLocation(),
                     ]
                 ),
                 'text/html'

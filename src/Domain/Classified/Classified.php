@@ -10,14 +10,19 @@ class Classified
     /** @var Price */
     private $price;
 
+    /** @var string */
+    private $location;
+
     /**
      * @param string $url
      * @param Price $price
+     * @param string $location
      */
-    public function __construct($url, Price $price)
+    public function __construct($url, Price $price, $location)
     {
         $this->url = $url;
         $this->price = $price;
+        $this->location  = $location;
     }
 
     /**
@@ -34,5 +39,13 @@ class Classified
     public function getPrice()
     {
         return $this->price;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
     }
 }
