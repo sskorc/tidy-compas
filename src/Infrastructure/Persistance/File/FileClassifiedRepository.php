@@ -38,7 +38,7 @@ class FileClassifiedRepository implements ClassifiedRepository
     {
         if ($this->filesystem->has('classified.txt')) {
             $url = $this->filesystem->read('classified.txt');
-            $classified = new Classified($url, new Price(0));
+            $classified = new Classified($url, new Price(0), '');
         } else {
             throw new ClassifiedNotFoundException();
         }
